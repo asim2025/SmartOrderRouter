@@ -1,0 +1,10 @@
+
+References
+
+1) Multi Agent Smart Order Router PDF
+https://www.inf.ed.ac.uk/publications/thesis/online/IT100916.pdf
+
+2) C++ Project Structure
+http://hiltmon.com/blog/2013/07/03/a-simple-c-plus-plus-project-structure/
+
+
