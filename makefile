@@ -13,7 +13,7 @@ INC=-I include
 
 
 all:	$(TARGET)
-	mv $(TARGET).exe $(TARGET)/SerialRouter.exe
+	mv $(TARGET).exe $(TARGET)/SmartOrderRouter.exe
 
 $(TARGET):	$(OBJECTS)
 	$(CXX) $(CXXFLAGS) $^ -o $(TARGET) $(LIB)
@@ -26,6 +26,7 @@ $(BUILDDIR)/%.o:	$(SRCDIR)/%.$(SRCEXT)
 clean:
 		rm -rf $(BUILDDIR)/*
 		rm -rf $(TARGET)/*
+		rm -rf *stackdump*
 
 debug:	
 	echo "Sources: $(SOURCES) "

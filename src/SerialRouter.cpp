@@ -1,10 +1,11 @@
+#include "SerialRouter.h"
+#include "Logger.h"
+#include "Venue.h"
 #include <algorithm>
 #include <iostream>
-#include "OrderStatus.h"
-#include "TimeInForce.h"
-#include "OrderType.h"
-#include "Side.h"
-#include "Order.h"
+#include <chrono>
+#include <thread>
+#include <vector>
 using namespace std;
 
 
@@ -16,21 +17,21 @@ using namespace std;
  *  to multiple venues.
  *
  */
-int main(void)
+void SerialRouter::route(const Order & order)
 {
+	log.info("starting...");
 
-	// BUY 100 DAY MARKET PRICE
-	Order prnt(SIDE::BUY, 100, TIME_IN_FORCE::DAY, ORDER_TYPE::MARKET, 0.0);
+	while (! order.is_terminal() )
+	{
+		int leavesQty = order.leavesQty();
+		log.info("leavesQty: ", leavesQty);
 
-	cout << "starting..." << endl;
 
+		// std::vector<Venue>
+		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+	}
 }
 
 
-void serial_router(Order & prnt)
-{
 
-
-
-}
 
