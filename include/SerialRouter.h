@@ -1,6 +1,6 @@
 #ifndef SERIAL_ROUTER_H
 #define SERIAL_ROUTER_H
-
+#include "VenueManager.h"
 #include "OrderStatus.h"
 #include "TimeInForce.h"
 #include "OrderType.h"
@@ -20,14 +20,15 @@
 class SerialRouter
 {
    public:
-		SerialRouter() : log("SerialRouter", Logger::LEVEL::INFO)
+		SerialRouter(const VenueManager & vm) : VenueManager( vm ), Log("SerialRouter", Logger::LEVEL::INFO)
 		{ }
 
       void route(const Order & order);
 
 
 	private:
-		Logger log;
+		VenueManager	VenueManager;
+		Logger			Log;
 };
 
 

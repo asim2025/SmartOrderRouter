@@ -24,6 +24,8 @@ class Venue
 		bool available() const
 		{ return Available; }
 
+		std::vector<std::string> symbols() const
+		{ return Symbols; }
 
 	private:
 		std::string						Name;											// venue name

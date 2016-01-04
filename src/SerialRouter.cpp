@@ -1,10 +1,9 @@
 #include "SerialRouter.h"
 #include "Logger.h"
 #include "Venue.h"
+#include "VenueManager.h"
 #include <algorithm>
 #include <iostream>
-#include <chrono>
-#include <thread>
 #include <vector>
 using namespace std;
 
@@ -19,16 +18,15 @@ using namespace std;
  */
 void SerialRouter::route(const Order & order)
 {
-	log.info("starting...");
+	Log.info("routing ...");
 
-	while (! order.is_terminal() )
+	if (! order.is_terminal() )
 	{
 		int leavesQty = order.leavesQty();
-		log.info("leavesQty: ", leavesQty);
+		Log.info("leavesQty: ", leavesQty);
 
 
 		// std::vector<Venue>
-		std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 	}
 }
 
