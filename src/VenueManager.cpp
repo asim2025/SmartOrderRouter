@@ -32,9 +32,21 @@ void VenueManager::remove_venue(Venue & venue)
 }
 
 
-vector<Venue> VenueManager::get_venues(const string & symbol)
+vector<Venue> VenueManager::venues(const string & symbol)
 {
-	return SymbolVenues[ symbol ];
+	vector<Venue> venues = SymbolVenues[ symbol ];
+	if (venues.empty())
+		return venues;
+
+	vector<Venue> rankings;
+	for (auto v : venues)
+	{
+		VenueRank vr = v.ranking( symbol );
+		Log.info("add ranking for venue:", v.name());
+		rankings.push_back(v);
+	}	
+
+	return rankings;
 }
 
 
@@ -52,6 +64,7 @@ void VenueManager::init()
 			vector<Venue> venues = SymbolVenues[ symbol ];
 			Log.info("adding to symbol:", symbol);
 			venues.push_back( v );
+			SymbolVenues[ symbol ] = venues;
 		}
 	}
 	

@@ -20,7 +20,7 @@
 class SerialRouter
 {
    public:
-		SerialRouter(const VenueManager & vm) : VenueManager( vm ), Log("SerialRouter", Logger::LEVEL::INFO)
+		SerialRouter(const VenueManager & vm) : VenueManager( vm ), Log("SerialRouter")
 		{ }
 
       void route(const Order & order);

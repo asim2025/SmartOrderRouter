@@ -9,13 +9,13 @@
 class VenueManager
 {
 	public:
-		explicit VenueManager(std::vector<Venue> & venues ) : Venues( venues ),  Log("VenueManager", Logger::LEVEL::INFO)
+		explicit VenueManager(std::vector<Venue> & venues ) : Venues( venues ),  Log("VenueManager")
 		{ init(); }
 
 		
 		void add_venue(const Venue & venue);
 		void remove_venue(Venue & venue);
-		std::vector<Venue> get_venues(const std::string & symbol);
+		std::vector<Venue> venues(const std::string & symbol);
 
 	private:
 		std::vector<Venue> Venues;

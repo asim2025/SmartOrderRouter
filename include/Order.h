@@ -39,6 +39,8 @@ class Order
 		}
 
 
+		std::string symbol() const
+		{ return Symbol; }
 		
 	private:
 		// ---  fix fields ---

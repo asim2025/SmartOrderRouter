@@ -20,14 +20,35 @@ void SerialRouter::route(const Order & order)
 {
 	Log.info("routing ...");
 
-	if (! order.is_terminal() )
+	if ( order.is_terminal() )
 	{
-		int leavesQty = order.leavesQty();
-		Log.info("leavesQty: ", leavesQty);
-
-
-		// std::vector<Venue>
+		Log.error("order is in terminal state.");
+		return;
 	}
+	
+	int leavesQty = order.leavesQty();
+	if ( leavesQty == 0 )
+	{
+		Log.error("order is fully filled.");
+		return;
+	}
+
+	Log.info("leavesQty: ", leavesQty);
+
+	string symbol = order.symbol();
+	Log.info("symbol: ", symbol);
+
+	vector<Venue> venues = VenueManager.venues( symbol );
+	if (venues.empty())
+	{
+		Log.error("no venues found for symbol:", symbol);
+		return;
+	}
+
+	for (auto i : venues)
+		cout << "v: " << i << endl;
+
+
 }
 
 

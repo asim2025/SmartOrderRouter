@@ -19,7 +19,7 @@ VenueManager create_venue_manager();
  */
 int main(void)
 {
-	Logger Log("Main", Logger::LEVEL::INFO);
+	Logger Log("Main");
 
 	// step 1 - create venue manager 
 	VenueManager vm = create_venue_manager();
@@ -32,7 +32,7 @@ int main(void)
 	// step 3 - route order (serial way)
 	SerialRouter sr(vm);
 
-   while (! prnt.is_terminal() )
+   while ( ! prnt.is_terminal() )
    {
 		sr.route( prnt );
       std::this_thread::sleep_for(std::chrono::milliseconds(1000));

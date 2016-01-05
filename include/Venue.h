@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include <iostream>
 
 /*
  * 
@@ -27,10 +28,25 @@ class Venue
 		std::vector<std::string> symbols() const
 		{ return Symbols; }
 
+		VenueRank ranking(const std::string & symbol) 
+		{
+			return SymbolRankings[ symbol ];
+		}
+
 	private:
 		std::string						Name;											// venue name
 		bool								Available;									// venue availablility flag
 		std::vector<std::string>	Symbols;										// symbols supported by venue
-		std::map<std::string, VenueRank> Rankings;							// symbol ranking
+		std::map<std::string, VenueRank> SymbolRankings;					// symbol ranking
+
+
+		friend std::ostream& operator<< (std::ostream & os, const Venue & v)
+		{
+			os << "Venue: [" << v.name() << "," << v.available() << "," ;
+			for (auto i : v.symbols())
+				os << i << ",";
+			os << "]";
+			return os;
+		}
 };
 #endif
