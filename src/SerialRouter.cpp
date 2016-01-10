@@ -16,17 +16,17 @@ using namespace std;
  *  to multiple venues.
  *
  */
-void SerialRouter::route(const Order & order)
+void SerialRouter::route(const Order & prnt)
 {
 	Log.info("routing ...");
 
-	if ( order.is_terminal() )
+	if ( prnt.is_terminal() )
 	{
 		Log.error("order is in terminal state.");
 		return;
 	}
 	
-	int leavesQty = order.leavesQty();
+	int leavesQty = prnt.leavesQty();
 	if ( leavesQty == 0 )
 	{
 		Log.error("order is fully filled.");
@@ -35,7 +35,7 @@ void SerialRouter::route(const Order & order)
 
 	Log.info("leavesQty: ", leavesQty);
 
-	string symbol = order.symbol();
+	string symbol = prnt.symbol();
 	Log.info("symbol: ", symbol);
 
 	vector<Venue> venues = VenueManager.venues( symbol );
@@ -45,12 +45,14 @@ void SerialRouter::route(const Order & order)
 		return;
 	}
 
-	for (auto i : venues)
-		cout << "v: " << i << endl;
-
-
+	for (auto v : venues)
+	{
+		int child_qty = leavesQty * v.exec_prob();
+		cout << "v: " << v << ", prob:" << v.exec_prob() << ", child_qty: " << child_qty << endl;
+		Order child( prnt );
+		child.set_qty( child_qty );
+		VenueManager.send_order( v, child);
+	}
 }
-
-
 
 

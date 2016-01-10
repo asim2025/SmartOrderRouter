@@ -7,6 +7,7 @@
 #include "Side.h"
 #include "Order.h"
 #include "Logger.h"
+#include "Venue.h"
 
 
 /*
@@ -24,7 +25,6 @@ class SerialRouter
 		{ }
 
       void route(const Order & order);
-
 
 	private:
 		VenueManager	VenueManager;

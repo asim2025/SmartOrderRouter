@@ -9,6 +9,11 @@ class VenueRank
 			MarketHistTradingVolume(0.0), ImmediateTradingActivity(0.0), PriceImprovementIndicator(0.0)
 		{ }
 
+		explicit VenueRank(double vtc, double rhtv, double mhtv, double ita, double pii) : 
+			VenueTradingCost( vtc ), RouterHistTradingVolume( rhtv ), MarketHistTradingVolume( mhtv ), 
+			ImmediateTradingActivity( ita ), PriceImprovementIndicator( pii )
+		{ }
+
 		void update_trading_cost(double v)
 		{ 
 			VenueTradingCost = v;

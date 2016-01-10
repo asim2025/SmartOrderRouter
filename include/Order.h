@@ -25,6 +25,19 @@ class Order
 				OrdStatus		=		ORDER_STATUS::NEW;
 		}
 
+		Order(const Order & o) : 
+				Side( o.Side ),
+            Symbol( o.Symbol ),
+            OrderQty( o.OrderQty ),
+            OrderType( o.OrderType ),
+            Price( o.Price ),
+            TimeInForce( o.TimeInForce )
+		{
+				MinQty			=		o.OrderQty;
+				CumQty			=		o.CumQty;
+				OrdStatus		=		ORDER_STATUS::NEW;
+		}
+
 		int leavesQty() const
 		{
 			return OrderQty - CumQty;
@@ -38,9 +51,12 @@ class Order
 			return false;
 		}
 
-
 		std::string symbol() const
 		{ return Symbol; }
+
+		void set_qty(int qty)
+		{ OrderQty = qty; }
+
 		
 	private:
 		// ---  fix fields ---

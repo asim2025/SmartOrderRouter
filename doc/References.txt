@@ -1,4 +1,3 @@
-
 References
 
 1) Multi Agent Smart Order Router PDF
